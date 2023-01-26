@@ -1,0 +1,13 @@
+Ditt mål är att paketera ett nodejs-projekt med Docker, och skriva en Docker Compose-fil som beskriver en backend med:
+
+  * node-projektet
+  * mysql
+  * apache eller nginx som load balancer/reverse proxy
+
+Projektet är detta exempelprojekt från github: https://github.com/bezkoder/nodejs-express-mysql
+
+Kraven är som följer:
+
+  * Du ska skriva både dockerfilen och composefilen själv
+  * Endast node-projektet ska kunna ansluta till myql-servern; den ska inte gå att nå från apache-containern, eller från värdsystemet, eller utifrån
+  * Redovisning sker med demo och presentation över zoom
