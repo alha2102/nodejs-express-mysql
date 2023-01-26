@@ -3,6 +3,9 @@
 For instruction, please visit:
 > [Build Node.js Rest APIs with Express & MySQL](https://www.bezkoder.com/node-js-rest-api-express-mysql/)
 
+"title": "Node.js Basics",
+"description": "Tut#1 Description",
+
 Front-end that works well with this Back-end
 > [Axios Client](https://www.bezkoder.com/axios-request/)
 
@@ -57,9 +60,22 @@ Fullstack:
 ## Project setup
 ```
 npm install
+
 ```
 
 ### Run
 ```
 node server.js
 ```
+  nginx: 
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d
+    ports:
+      - 6868:8080
+    depends_on:
+      - app
+    networks:
+      - mynetwork
+    extra_hosts:
+    - "host.docker.internal:host-gateway"

@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d
+    ports:
+      - 8080:8080
+    depends_on:
+      - app
+  app:
+    depends_on:
+      - mysqldb
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      - DB_HOST=mysqldb
+      - DB_USER=root
+      - DB_PASSWORD=password
+      - DB_NAME=testdb
+      - DB_PORT=3306
+  mysqldb:
+    image: mysql:5.7.26
+    command: --init-file /data/initdb.sql
+    container_name: mysqldb
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=testdb
+    volumes:
+      - ./initdb.sql:/data/initdb.sql
